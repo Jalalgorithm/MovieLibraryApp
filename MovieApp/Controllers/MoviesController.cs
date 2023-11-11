@@ -92,19 +92,18 @@ namespace MovieApp.Controllers
         }
         [HttpDelete("/api/movies/delete/{id}")]
 
-        public async Task<IActionResult> DeleteMovie (int id , [FromBody]MoviesApiModel movie)
+        public async Task<IActionResult> DeleteMovie (int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
 
             var Mainmovie = await context.Movies.FindAsync(id);
-            var DeleteMovie = mapper.Map<MoviesApiModel, Movie>(movie , Mainmovie);
 
-            context.Movies.Remove(DeleteMovie);
+            if (Mainmovie == null)
+                return NotFound();
 
-            var result = mapper.Map<Movie , MoviesApiModel>(DeleteMovie);
+            context.Remove(Mainmovie);
+            context.SaveChangesAsync();
 
-            return Ok(result);
+            return Ok(id);
 
         }
 
