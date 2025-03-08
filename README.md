@@ -70,4 +70,5 @@ This project is licensed under the MIT License. See `LICENSE` for more details.
 
 ## Contact
 For any inquiries or support, please reach out at temitomzi@gmail.com.
+or ahmeedabduljalal@gmail.com
 
